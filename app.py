@@ -101,12 +101,14 @@ AMBANG = {
 
 
 PROFIL_STASIUN = {
-    "DKI1": {"PM10": 55, "PM25": 40, "SO2": 25, "CO": 12, "O3": 24, "NO2": 35},
-    "DKI2": {"PM10": 60, "PM25": 45, "SO2": 24, "CO": 14, "O3": 27, "NO2": 38},
-    "DKI3": {"PM10": 45, "PM25": 32, "SO2": 18, "CO":  9, "O3": 20, "NO2": 22},
-    "DKI4": {"PM10": 65, "PM25": 50, "SO2": 28, "CO": 16, "O3": 28, "NO2": 55},  
-    "DKI5": {"PM10": 62, "PM25": 46, "SO2": 26, "CO": 15, "O3": 26, "NO2": 37},
+    # Nilai median dari dataset ISPU DKI Jakarta 2023 (data asli CSV)
+    "DKI1": {"PM10": 55, "PM25": 77, "SO2": 44, "CO": 11, "O3": 25, "NO2": 26},
+    "DKI2": {"PM10": 61, "PM25": 77, "SO2": 41, "CO":  9, "O3": 33, "NO2": 22},
+    "DKI3": {"PM10": 56, "PM25": 72, "SO2": 53, "CO":  8, "O3": 24, "NO2": 10},
+    "DKI4": {"PM10": 59, "PM25": 96, "SO2": 32, "CO": 19, "O3": 19, "NO2": 15},
+    "DKI5": {"PM10": 48, "PM25": 75, "SO2": 23, "CO": 16, "O3": 46, "NO2": 16},
 }
+
 
 # ── Helper ────────────────────────────────────────────────────────────────────
 def generate_ispu(stasiun: str) -> dict:
@@ -131,7 +133,7 @@ with st.sidebar:
     st.metric("Algoritma",            "K-Nearest Neighbors")
     st.metric("k Optimal",            meta["k_terbaik"])
     st.metric("Akurasi Test",         f"{meta['akurasi_test']*100:.2f}%")
-    st.metric("F1-Macro CV (5-Fold)", f"{meta['f1_macro_cv']*100:.2f}%")
+    st.metric("Akurasi CV (5-Fold)",  f"{meta['akurasi_cv']*100:.2f}%")
     st.caption(f"Dataset : {meta['dataset']}")
     st.caption(f"Train : {meta['train_size']} | Test : {meta['test_size']} baris")
     st.divider()
