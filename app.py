@@ -131,7 +131,7 @@ with st.sidebar:
     st.metric("Algoritma",            "K-Nearest Neighbors")
     st.metric("k Optimal",            meta["k_terbaik"])
     st.metric("Akurasi Test",         f"{meta['akurasi_test']*100:.2f}%")
-    st.metric("Akurasi CV (5-Fold)",  f"{meta['akurasi_cv']*100:.2f}%")
+    st.metric("F1-Macro CV (5-Fold)", f"{meta['f1_macro_cv']*100:.2f}%")
     st.caption(f"Dataset : {meta['dataset']}")
     st.caption(f"Train : {meta['train_size']} | Test : {meta['test_size']} baris")
     st.divider()
