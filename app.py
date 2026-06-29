@@ -126,25 +126,6 @@ def generate_ispu(stasiun: str) -> dict:
 def badge(val: float, batas: float) -> str:
     return "✅ Normal" if val <= batas else f"⚠️ Melebihi ({batas})"
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
-with st.sidebar:
-    st.header("ℹ️ Info Model")
-    st.metric("Algoritma",            "K-Nearest Neighbors")
-    st.metric("k Optimal",            meta["k_terbaik"])
-    st.metric("Akurasi Test",         f"{meta['akurasi_test']*100:.2f}%")
-    st.metric("F1-Macro CV (5-Fold)", f"{meta['f1_macro_cv']*100:.2f}%")
-    st.caption(f"Dataset : {meta['dataset']}")
-    st.caption(f"Train : {meta['train_size']} | Test : {meta['test_size']} baris")
-    st.divider()
-    st.caption("📌 Ambang batas aman ISPU:")
-    for k in FITUR:
-        st.caption(f"  • {FITUR_DISPLAY[k]}: {AMBANG[k]} µg/m³")
-    st.divider()
-    st.caption(
-        "📡 **Sumber data:** Estimasi berbasis profil historis "
-        "5 stasiun ISPU DKI Jakarta 2023 (DKI1–DKI5)."
-    )
-
 # ── Header ────────────────────────────────────────────────────────────────────
 st.title("🌫️ Klasifikasi Kualitas Udara DKI Jakarta")
 st.markdown("Berbasis **K-Nearest Neighbors (k-NN)** · Dataset ISPU DKI Jakarta 2023")
