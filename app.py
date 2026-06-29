@@ -214,13 +214,16 @@ for col, key in zip(cols, FITUR):
 st.divider()
 st.subheader(f"🔍 Hasil Analisis Kualitas Udara · {pilihan}")
 
-input_arr    = np.array([[d[k] for k in FITUR]])   # urutan harus sesuai training
+input_arr    = np.array([[d[k] for k in FITUR]])
 input_scaled = scaler.transform(input_arr)
-prediksi     = model.predict(input_scaled)[0]
+prediksi_knn = model.predict(input_scaled)[0]   # ← rename jadi prediksi_knn
 proba        = model.predict_proba(input_scaled)[0]
 kelas        = meta["label_classes"]
 
 melebihi_label = [FITUR_DISPLAY[k] for k in FITUR if d[k] > AMBANG[k]]
+
+# Override: jika ada komponen melebihi ambang → Tidak Sehat
+prediksi = "Tidak Sehat" if melebihi_label else prediksi_knn
 
 col_narasi, col_detail = st.columns([1, 1], gap="large")
 
